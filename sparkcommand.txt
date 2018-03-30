@@ -1,0 +1,1 @@
+spark-submit /home/hadoop/itm_co_itm_chrt_rel/itm_co_itm_chrt_rel.py 1,2,3 GEN-RI

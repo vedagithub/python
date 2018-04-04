@@ -19,11 +19,15 @@ def main():
 	hive_context = initializeSparkHiveContext('iri_bi_data_brand')
 	hive_context.sql("SET mapred.input.dir.recursive=true")	
 	print 'create df dataframe'	
-	df = hive_context.sql('select count(1) from consumer.iri_bi_data_brand_proc')	
+	df = hive_context.sql('select * from consumer.iri_bi_data_brand_cleansed limit 10')	
 	#df = hive_context.sql("select 100")
 	print 'showing df dataframe..'
-	df.show()	
+	df.show()
 	print 'end of showing df dataframe..'
+	print 'start of creating processed table..'		
+	df.registerTempTable("IRI_BI_DATA_BRAND_INT")
+	df2=hive_context.sql('insert overwrite table consumer.iri_bi_data_brand_proc select * from IRI_BI_DATA_BRAND_INT')
+	print 'end of creating processed table'
 
 if __name__ == "__main__":
 	try:

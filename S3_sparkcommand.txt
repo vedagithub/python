@@ -1,3 +1,24 @@
 aws s3 cp s3://bayer-cdh-poc/iri/test.py /home/ec2-user/iriscripts/test/
 
+
+aws s3 cp s3://bayer-cdh-poc/iri/add.py /home/ec2-user/iriscripts/test/common/
+aws s3 cp s3://bayer-cdh-poc/iri/__init__.py /home/ec2-user/iriscripts/test2/common/
+aws s3 cp s3://bayer-cdh-poc/iri/math.py /home/ec2-user/iriscripts/test/
+aws s3 cp s3://bayer-cdh-poc/iri/math.py /home/ec2-user/iriscripts/test2/
+
 spark-submit --files /opt/cloudera/parcels/CDH-5.12.2-1.cdh5.12.2.p0.4/lib/hive/conf/hive-site.xml /home/ec2-user/iriscripts/test/test.py
+
+spark-submit /home/ec2-user/iriscripts/test/test.py
+
+spark2-submit /home/ec2-user/iriscripts/test/test.py
+
+df.write.insertInto(target_db.target_table,overwrite = False) 
+
+cp /opt/cloudera/parcels/CDH-5.12.2-1.cdh5.12.2.p0.4/lib/hive/conf/hive-site.xml /opt/cloudera/parcels/CDH/lib/spark/conf/
+
+
+
+export HIVE_CONF_DIR=${HIVE_CONF_DIR:-/opt/cloudera/parcels/CDH-5.12.2-1.cdh5.12.2.p0.4/lib/hive/conf}
+
+export HIVE_SERVER2_THRIFT_BIND_HOST=0.0.0.0
+export HIVE_SERVER2_THRIFT_PORT=10001
